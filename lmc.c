@@ -1,11 +1,20 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include <string.h>
 #include <inttypes.h>
 #include "lmc.h"
 
 void lmc_init(LitteManComputerContext *ctx) {
   memset(ctx, 0, sizeof(*ctx));
+}
+
+void lmc_init_with(LitteManComputerContext *ctx, uint16_t *instructions) {
+  ctx->accumulator = 0;
+  ctx->program_counter = 0;
+  ctx->flags = 0;
+  ctx->executing = false;
+  memcpy(ctx->mailboxes, instructions, sizeof(*instructions) * 100);
 }
 
 static void lmc_placeholder_instruction(LitteManComputerContext *ctx, uint16_t data) {}

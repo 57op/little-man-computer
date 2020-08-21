@@ -1,10 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <assert.h>
 
 #include "lmc.h"
+#include "asm.h"
 
-int main(void) {
+int main(int argc, const char *argv[]) {
+  assert(argc == 2);
+
+  FILE *fh = fopen(argv[1], "r");
+
+  if (fh == NULL) {
+    fprintf(stderr, "Cannot open file %s\n", argv[1]);
+    return 1;
+  }
+
+  uint16_t *instructions = lmc_asm_parse(fh);
+  LitteManComputerContext lmc;
+
+  lmc_init_with(&lmc, instructions);
+  lmc_execute(&lmc);
+
+  free(instructions);
+  fclose(fh);
+
+  return 0;
+
+  /*
   LitteManComputerContext lmc;
 
   lmc_init(&lmc);
@@ -35,5 +58,5 @@ int main(void) {
 
   lmc_execute(&lmc);
 
-  return 0;
+  return 0;*/
 }

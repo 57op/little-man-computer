@@ -1,0 +1,9 @@
+The files sub.asm, count.asm, and square.asm are extracted from
+the Wikipedia article "Little man computer" [0], which is released under
+the Creative Commons Attribution-ShareAlike 3.0 Unported License [1].
+
+The file fib.asm is taken from nathggns's gist [2]
+
+[0] https://en.wikipedia.org/wiki/Little_man_computer (consulted on 22-Aug-2020)
+[1] https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License (consulted on 22-Aug-2020)
+[2] https://gist.github.com/nathggns/9757c105138c74f39dd4 (consulted on 22-Aug-2020)
