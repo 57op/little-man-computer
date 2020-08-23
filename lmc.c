@@ -35,6 +35,8 @@ static void lmc_subtract_instruction(LitteManComputerContext *ctx, uint16_t mail
 
   if (value > ctx->accumulator) {
     ctx->flags |= LMC_NEGATIVE_FLAG;
+  } else {
+    ctx->flags &= ~LMC_NEGATIVE_FLAG;
   }
 
   ctx->accumulator -= value;
