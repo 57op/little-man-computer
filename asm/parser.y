@@ -40,8 +40,8 @@ asm:
   ;
 
 new_line:
-  T_NEWLINE |
-  T_NEWLINE new_line
+  T_NEWLINE
+  | T_NEWLINE new_line
   ;
 
 number_dat:
@@ -92,10 +92,8 @@ instruction:
   ;
 
 instruction_boundary:
-  instruction {
-    add_to_lines(&$1, data);
-  }
-  | instruction new_line {
+  new_line
+  | instruction {
     add_to_lines(&$1, data);
   }
   ;

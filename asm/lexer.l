@@ -34,6 +34,6 @@ DAT         { yylval->opcode = LMC_DAT; return T_DAT; }
 [0-9]{1,2}  { yylval->number = atoi(yytext); return T_NUMBER; }
 [0-9]{3}    { yylval->number_dat = atoi(yytext); return T_NUMBER_DAT; }
 \n          { return T_NEWLINE; }
-\/\/.*        ;
+\/\/.*      ;
 .           ;
 %%
