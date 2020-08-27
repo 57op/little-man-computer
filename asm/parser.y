@@ -19,19 +19,17 @@ void add_to_lines(asm_line *line, parser_data *data);
 %union {
   asm_opcode opcode;
   char *label;
-  uint8_t number;
-  uint16_t number_dat;
+  uint16_t number;
   asm_line line;
 }
 
 %token <opcode> T_ARG_INSTR T_INSTR T_DAT
 %token <label> T_LABEL
-%token <number> T_NUMBER
-%token <number_dat> T_NUMBER_DAT
+%token <number> T_NUMBER T_NUMBER_DAT
 %token T_NEWLINE
 
 %type <line> unlabeled_instruction instruction
-%type <number_dat> number_dat
+%type <number> number_dat
 %%
 asm:
   | asm T_NEWLINE
