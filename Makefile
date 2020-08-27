@@ -1,8 +1,16 @@
-all: parser.tab.o lex.yy.o asm.o lmc.o main.o
+all: | parser lexer main
+
+main: parser.tab.o lex.yy.o asm.o lmc.o main.o
 	gcc -Llibs -o main $^ -s -Os
 
-parser.tab.c parser.tab.h lex.yy.c lex.yy.h:
+parser.tab.c: parser
+
+lex.yy.c: lexer
+
+parser:
 	bison -d asm/parser.y
+
+lexer:
 	flex asm/lexer.l
 
 %.o: %.c
