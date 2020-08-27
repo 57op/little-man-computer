@@ -33,15 +33,11 @@ void add_to_lines(asm_line *line, parser_data *data);
 %type <line> unlabeled_instruction instruction
 %type <number_dat> number_dat
 %%
-
 asm:
-  instruction_boundary
-  | asm instruction_boundary
-  ;
-
-new_line:
-  T_NEWLINE
-  | T_NEWLINE new_line
+  | asm T_NEWLINE
+  | asm instruction {
+    add_to_lines(&$2, data);
+  }
   ;
 
 number_dat:
@@ -88,13 +84,6 @@ instruction:
   | unlabeled_instruction {
     $$ = $1;
     $$.label = NULL;
-  }
-  ;
-
-instruction_boundary:
-  new_line
-  | instruction {
-    add_to_lines(&$1, data);
   }
   ;
 %%
