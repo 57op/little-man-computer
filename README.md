@@ -16,5 +16,10 @@ $ ./main examples/fib.asm
 ```
 
 ### Tools
-Tested on GNU+Linux with GCC 10.1.0, GNU Bison 3.6.4 and flex 2.6.4  
-Tested on Microsoft Windows with GCC 8.1.0, GNU Bison 3.5.0 and flex 2.6.4
+Tested on GNU+Linux with GCC 10.1.0, GNU Bison 3.6.4, flex 2.6.4 and GNU [libjit](http://git.savannah.gnu.org/cgit/libjit.git/commit/?id=942c988db170d98061a9e934fb3d7b618b7d5137).  
+Tested on Microsoft Windows with GCC 8.1.0, GNU Bison 3.5.0 and flex 2.6.4. JIT not tested on this platform.  
+
+### JIT
+Experimental JIT assembly compiler is enabled by compiling with `make JIT=1` and by passing any value to the program second argument.  
+It should work fine, but it won't definetily works with programs that use self-writing code (i.e. `examples/quine.asm`).  
+Only tested on GNU+Linux.

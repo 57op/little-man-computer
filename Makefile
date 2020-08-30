@@ -1,7 +1,16 @@
+OBJS = parser.tab.o lex.yy.o asm.o lmc.o main.o
+CFLAGS ?=
+LIBS ?=
+
+ifdef JIT
+	OBJS += lmc_jit.o
+	override CFLAGS += -DLMC_USE_JIT
+endif
+
 all: | parser lexer main
 
-main: parser.tab.o lex.yy.o asm.o lmc.o main.o
-	gcc -Llibs -o main $^ -s -Os
+main: $(OBJS)
+	gcc -o main $^ -s -Os $(LIBS)
 
 parser.tab.c: parser
 
@@ -14,7 +23,7 @@ lexer:
 	flex asm/lexer.l
 
 %.o: %.c
-	gcc -c $< -o $@ -s -Os -std=c11 -Wall
+	gcc $(CFLAGS) -c $< -o $@ -s -Os -std=c11 -Wall
 
 clean:
 	rm -f *.o main main.exe parser.tab.{c,h} lex.yy.{c,h}

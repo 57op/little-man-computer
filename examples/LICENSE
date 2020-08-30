@@ -1,4 +1,4 @@
-The files sub.asm, count.asm, and square.asm are extracted from
+The files sub.asm, count.asm, square.asm and quine.asm are extracted from
 the Wikipedia article "Little man computer" [0], which is released under
 the Creative Commons Attribution-ShareAlike 3.0 Unported License [1].
 
